@@ -1,8 +1,22 @@
 
 # For virtualbox
 
+* `echo 'Vagrant.configure("2") do |config|
+    config.ssh.insert_key = false
+  #  config.ssh.username = "vagrant"
+  #  config.ssh.password = "vagrant"
+end' >> Vagrantfile`
+
+* I also had to add the following on lxc
+  `echo 'Vagrant.configure("2") do |config|
+     config.ssh.private_key_path = "~/.vagrant.d/insecure_private_key"
+   end' >> Vagrantfile`
+
 * Start your vagrant project and let the provisioning run
-* Shut it down
+* `vagrant ssh -c 'cd && wget --no-check-certificate https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub -O .ssh/authorized_keys'`
+
+
+* `vagrant halt`
 * Do `vagrant package --output 'mybox_0.1.0.box'`
 * Upload it to your webserver
 * Create a whatever.json with the following content
