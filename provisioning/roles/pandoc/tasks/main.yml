@@ -1,0 +1,4 @@
+---
+- name: Install Pandoc
+  apt: name=pandoc state=present
+  become: yes
