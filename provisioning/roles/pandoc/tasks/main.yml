@@ -1,4 +1,7 @@
 ---
-- name: Install Pandoc
-  apt: name=pandoc state=present
+- name: Install Pandoc and dependencies
+  apt: name={{ item }} state=present
+  with_items:
+    - pandoc
+    - texlive-full
   become: yes
