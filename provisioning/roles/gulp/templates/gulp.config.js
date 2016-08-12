@@ -3,8 +3,10 @@
 module.exports = {
   src: {
     sass:           'static/sass/**/*.scss',
-{% if gulp_use_webpack %}
+{% if gulp_use_webpack or gulp_use_webpack %}
     javascripts:    'static/javascripts/src/**/*.{js,jsx{% if gulp_use_purescript %},purs{% endif %}}',
+{% endif %}
+{% if gulp_use_webpack %}
     webpack:        ['./static/javascripts/src/main.js'],
 {% endif %}
     images:         'static/images/**/*.{gif,jpg,jpeg,png,svg}',
@@ -17,6 +19,9 @@ module.exports = {
 {% endif %}
     images:         'static/images'
   },
+{% if gulp_use_webpack or gulp_use_webpack %}
+  eslint: { }
+{% endif %}
   browserSync: {
     proxy:          '{{ hostname }}',
     open:           false,

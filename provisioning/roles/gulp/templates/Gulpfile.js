@@ -26,7 +26,7 @@ var webpackConfig = require('./webpack.config.js'),
 /**
  * Watching files for changes
  */
-gulp.task('watch', [{% if gulp_use_webpack %}'webpack', {% endif %}'sass'], function() {
+gulp.task('watch', [{% if gulp_use_eslint %}'eslint', {% endif %}{% if gulp_use_webpack %}'webpack', {% endif %}'sass'], function() {
   browserSync.init(config.browserSync);
 
   gulp.watch(config.src.sass, ['sass']);
@@ -48,6 +48,13 @@ gulp.task('sass', function() {
     .pipe(gulp.dest(config.dest.css))
     .pipe(browserSync.stream({match: '**/*.css'}));
 });
+
+{% if gulp_use_eslint %}
+gulp.task('lint', function() {
+  return gulp.src(config.src.sass.javascripts).pipe(eslint(config.eslint))
+  .pipe(eslint.format())
+});
+{% endif %}
 
 {% if gulp_use_webpack %}
 /**
