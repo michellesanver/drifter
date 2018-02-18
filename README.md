@@ -14,7 +14,7 @@ Project kickoff
 ---------------
 
 Full instructions are available on [Read The Docs](https://liip-drifter.readthedocs.io/en/latest/#usage).
-But for you lazy guys, here is the code snippet:
+But if you want a quickstart, here is the code snippet:
 
 ```
 curl -sS https://raw.githubusercontent.com/liip/drifter/master/install.sh | /bin/bash
